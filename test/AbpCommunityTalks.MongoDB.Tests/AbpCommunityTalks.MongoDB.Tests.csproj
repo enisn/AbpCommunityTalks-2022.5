@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>AbpCommunityTalks</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AbpCommunityTalks.MongoDB\AbpCommunityTalks.MongoDB.csproj" />
+    <ProjectReference Include="..\AbpCommunityTalks.TestBase\AbpCommunityTalks.TestBase.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Mongo2Go" Version="3.1.3" />
+  </ItemGroup>
+
+</Project>
