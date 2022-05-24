@@ -1,6 +1,8 @@
+using Volo.Abp.DependencyInjection;
+
 namespace AbpCommunityTalks.Maui.Data;
 
-public class WeatherForecastService
+public class WeatherForecastService : ISingletonDependency
 {
 	private static readonly string[] Summaries = new[]
 	{
