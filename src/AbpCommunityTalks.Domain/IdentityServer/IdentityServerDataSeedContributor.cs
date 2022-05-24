@@ -198,6 +198,23 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
                 corsOrigins: new[] { swaggerRootUrl.RemovePostFix("/") }
             );
         }
+
+
+        // Maui Client
+        var mauiClientId = configurationSection["AbpCommunityTalks_Maui:ClientId"];
+        if (!mauiClientId.IsNullOrWhiteSpace())
+        {
+            var mauiRootUrl = configurationSection["AbpCommunityTalks_Maui:RootUrl"];
+
+            await CreateClientAsync(
+                name: mauiClientId,
+                scopes: commonScopes,
+                grantTypes: new[] { "authorization_code" },
+                secret: configurationSection["AbpCommunityTalks_Maui:ClientSecret"]?.Sha256(),
+                requireClientSecret: false,
+                redirectUri: $"{mauiRootUrl}"
+            );
+        }
     }
 
     private async Task<Client> CreateClientAsync(
