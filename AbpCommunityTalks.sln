@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbpCommunityTalks.Domain", "src\AbpCommunityTalks.Domain\AbpCommunityTalks.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbpCommunityTalks.HttpApi.Host", "src\AbpCommunityTalks.HttpApi.Host\AbpCommunityTalks.HttpApi.Host.csproj", "{748584B1-BA69-4F6A-81AA-F4BDE6BCE29D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbpCommunityTalks.Blazor", "src\AbpCommunityTalks.Blazor\AbpCommunityTalks.Blazor.csproj", "{27B2DDC7-8B75-4322-A312-25419C15D9D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbpCommunityTalks.Maui", "src\AbpCommunityTalks.Maui\AbpCommunityTalks.Maui.csproj", "{A66E56B9-A12C-4C95-92D9-6F99D667B99E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,12 @@ Global
 		{27B2DDC7-8B75-4322-A312-25419C15D9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27B2DDC7-8B75-4322-A312-25419C15D9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27B2DDC7-8B75-4322-A312-25419C15D9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +131,7 @@ Global
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{748584B1-BA69-4F6A-81AA-F4BDE6BCE29D} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{27B2DDC7-8B75-4322-A312-25419C15D9D8} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{A66E56B9-A12C-4C95-92D9-6F99D667B99E} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AAFA1C6-603E-13FA-45E5-7910AA9F661D}
