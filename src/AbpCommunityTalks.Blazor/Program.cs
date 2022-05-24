@@ -13,7 +13,6 @@ public class Program
         {
             options.UseAutofac();
         });
-
         var host = builder.Build();
 
         await application.InitializeApplicationAsync(host.Services);

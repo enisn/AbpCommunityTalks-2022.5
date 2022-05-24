@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AbpCommunityTalks.Maui"
+             xmlns:basictheme="clr-namespace:Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;assembly=Volo.Abp.AspNetCore.Components.Web.BasicTheme"
              x:Class="AbpCommunityTalks.Maui.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <BlazorWebView HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
+            <RootComponent Selector="#app" ComponentType="{x:Type basictheme:App}" />
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 
