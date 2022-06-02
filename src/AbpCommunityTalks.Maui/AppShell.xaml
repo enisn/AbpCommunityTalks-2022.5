@@ -7,9 +7,20 @@
     xmlns:pages="clr-namespace:AbpCommunityTalks.Maui.Pages"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate pages:IdentityUsersPage}"
-        Route="MainPage" />
+
+    <TabBar>
+        <Tab Title="Users">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate pages:IdentityUsersPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="Roles">
+            <ShellContent 
+                Title="FileSystem"
+                ContentTemplate="{DataTemplate pages:BlankPage}"
+                Route="FileSystem"/>
+        </Tab>
+    </TabBar>
 
 </Shell>
