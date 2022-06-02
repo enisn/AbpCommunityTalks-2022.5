@@ -24,13 +24,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<ProvisioningType>automatic</ProvisioningType>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
-	  <CodesignEntitlements>Info.plist</CodesignEntitlements>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android|AnyCPU'">
-	  <CodesignEntitlements>$(iOSProjectFolder)Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -51,12 +44,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
-	  <None Remove="Pages\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="appsettings.json" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Pages\" />
 	</ItemGroup>
 </Project>

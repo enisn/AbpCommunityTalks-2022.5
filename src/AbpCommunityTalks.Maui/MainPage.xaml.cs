@@ -7,11 +7,13 @@ namespace AbpCommunityTalks.Maui;
 public partial class MainPage : ContentPage, ITransientDependency
 {
     protected OidcClient OidcClient { get; }
+    protected ISecureStorage Storage { get; }
 
-    public MainPage(OidcClient oidcClient)
+    public MainPage(OidcClient oidcClient, ISecureStorage storage)
     {
         InitializeComponent();
         OidcClient = oidcClient;
+        Storage = storage;
     }
 
     async void OnLoginClicked(object sender, EventArgs e)
@@ -23,8 +25,8 @@ public partial class MainPage : ContentPage, ITransientDependency
             return;
         }
 
-        await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
-        await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
+        await Storage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
+        await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
     }
 }
 
