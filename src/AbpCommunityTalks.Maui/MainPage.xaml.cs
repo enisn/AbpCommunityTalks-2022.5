@@ -14,12 +14,15 @@ public partial class MainPage : ContentPage, ITransientDependency
     protected ISecureStorage Storage { get; }
     protected IServiceProvider ServiceProvider { get; }
 
-    public MainPage(OidcClient oidcClient, ISecureStorage storage, IServiceProvider serviceProvider)
+    public MainPage(OidcClient oidcClient, ISecureStorage storage, IServiceProvider serviceProvider/*, IStringLocalizer l*/)
     {
         InitializeComponent();
         OidcClient = oidcClient;
         Storage = storage;
         ServiceProvider = serviceProvider;
+
+        //welcome.Text = l["Welcome"];
+        //welcomeLong.Text = l["LongWelcomeMessage"];
     }
 
     async void OnLoginClicked(object sender, EventArgs e)
@@ -35,9 +38,5 @@ public partial class MainPage : ContentPage, ITransientDependency
         await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
 
         App.Current.MainPage = ServiceProvider.GetRequiredService<AppShell>();
-
-        var service = ServiceProvider.GetRequiredService<IIdentityUserAppService>();
-
-        var list = await service.GetListAsync(new GetIdentityUsersInput());
     }
 }

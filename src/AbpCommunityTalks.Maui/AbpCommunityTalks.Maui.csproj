@@ -51,4 +51,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\AbpCommunityTalks.HttpApi.Client\AbpCommunityTalks.HttpApi.Client.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Pages\IdentityUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
 </Project>
