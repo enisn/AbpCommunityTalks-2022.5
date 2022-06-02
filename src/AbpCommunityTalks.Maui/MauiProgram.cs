@@ -1,4 +1,9 @@
-﻿namespace AbpCommunityTalks.Maui;
+﻿using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
+using Volo.Abp;
+
+namespace AbpCommunityTalks.Maui;
 
 public static class MauiProgram
 {
@@ -13,6 +18,25 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+		ConfigureConfiguration(builder);
+
+
+		builder.Services.AddApplication<AbpCommunityTalksMauiModule>(options =>
+		{
+			options.Services.ReplaceConfiguration(builder.Configuration);
+		});
+
+		var app = builder.Build();
+
+		app.Services.GetRequiredService<IAbpApplicationWithExternalServiceProvider>()
+			.Initialize(app.Services);
+
+		return app;
+	}
+
+	private static void ConfigureConfiguration(MauiAppBuilder builder)
+	{
+		var assembly = typeof(App).GetTypeInfo().Assembly;
+		builder.Configuration.AddJsonFile(new EmbeddedFileProvider(assembly), "appsettings.json", optional: false, false);
 	}
 }

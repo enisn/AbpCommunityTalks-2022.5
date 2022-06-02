@@ -212,7 +212,7 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
                 grantTypes: new[] { "authorization_code" },
                 secret: configurationSection["AbpCommunityTalks_Maui:ClientSecret"]?.Sha256(),
                 requireClientSecret: false,
-                redirectUri: $"{mauiRootUrl}/authentication/login-callback"
+                redirectUri: $"{mauiRootUrl}"
             );
         }
     }

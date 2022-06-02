@@ -30,9 +30,9 @@
 
             <Button 
                 x:Name="CounterBtn"
-                Text="Click me"
+                Text="Click to Login"
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Clicked="OnLoginClicked"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>

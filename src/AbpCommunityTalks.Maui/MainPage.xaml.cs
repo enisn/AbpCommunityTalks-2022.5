@@ -1,24 +1,30 @@
-﻿namespace AbpCommunityTalks.Maui;
+﻿using System;
+using IdentityModel.OidcClient;
+using Volo.Abp.DependencyInjection;
 
-public partial class MainPage : ContentPage
+namespace AbpCommunityTalks.Maui;
+
+public partial class MainPage : ContentPage, ITransientDependency
 {
-	int count = 0;
+    protected OidcClient OidcClient { get; }
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage(OidcClient oidcClient)
+    {
+        InitializeComponent();
+        OidcClient = oidcClient;
+    }
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+    async void OnLoginClicked(object sender, EventArgs e)
+    {
+        var loginResult = await OidcClient.LoginAsync(new LoginRequest());
+        if (loginResult.IsError)
+        {
+            await DisplayAlert("Error", loginResult.Error, "Close");
+            return;
+        }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
+        await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
+    }
 }
 
