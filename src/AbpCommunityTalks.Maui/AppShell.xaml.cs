@@ -1,6 +1,8 @@
-﻿namespace AbpCommunityTalks.Maui;
+﻿using Volo.Abp.DependencyInjection;
 
-public partial class AppShell : Shell
+namespace AbpCommunityTalks.Maui;
+
+public partial class AppShell : Shell, ITransientDependency
 {
     public AppShell()
     {

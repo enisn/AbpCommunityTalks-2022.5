@@ -35,7 +35,7 @@
 			<string>mauiessentials</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>AbpCommunityTalks</string>
+				<string>abpcommunitytalks</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>

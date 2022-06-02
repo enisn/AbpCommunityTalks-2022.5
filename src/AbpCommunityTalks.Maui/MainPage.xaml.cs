@@ -1,5 +1,6 @@
 ﻿using System;
 using IdentityModel.OidcClient;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.DependencyInjection;
 
 namespace AbpCommunityTalks.Maui;
@@ -8,12 +9,14 @@ public partial class MainPage : ContentPage, ITransientDependency
 {
     protected OidcClient OidcClient { get; }
     protected ISecureStorage Storage { get; }
+    protected IServiceProvider ServiceProvider { get; }
 
-    public MainPage(OidcClient oidcClient, ISecureStorage storage)
+    public MainPage(OidcClient oidcClient, ISecureStorage storage, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         OidcClient = oidcClient;
         Storage = storage;
+        ServiceProvider = serviceProvider;
     }
 
     async void OnLoginClicked(object sender, EventArgs e)
@@ -27,6 +30,8 @@ public partial class MainPage : ContentPage, ITransientDependency
 
         await Storage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
         await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
+
+        App.Current.MainPage = ServiceProvider.GetRequiredService<AppShell>();
     }
 }
 
