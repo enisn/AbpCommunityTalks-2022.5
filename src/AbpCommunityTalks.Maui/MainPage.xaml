@@ -19,6 +19,7 @@
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
+                x:Name="welcome"
                 HorizontalOptions="Center" />
             
             <Label 
@@ -26,6 +27,7 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
+                x:Name="welcomeLong"
                 HorizontalOptions="Center" />
 
             <Button 

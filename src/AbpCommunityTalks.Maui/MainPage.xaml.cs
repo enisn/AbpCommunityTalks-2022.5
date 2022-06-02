@@ -1,7 +1,10 @@
 ﻿using System;
 using IdentityModel.OidcClient;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Identity;
+using Volo.Abp.Users;
 
 namespace AbpCommunityTalks.Maui;
 
@@ -32,6 +35,9 @@ public partial class MainPage : ContentPage, ITransientDependency
         await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
 
         App.Current.MainPage = ServiceProvider.GetRequiredService<AppShell>();
+
+        var service = ServiceProvider.GetRequiredService<IIdentityUserAppService>();
+
+        var list = await service.GetListAsync(new GetIdentityUsersInput());
     }
 }
-

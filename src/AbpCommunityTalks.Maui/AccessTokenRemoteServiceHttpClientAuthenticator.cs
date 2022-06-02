@@ -14,14 +14,17 @@ public class AccessTokenRemoteServiceHttpClientAuthenticator : IRemoteServiceHtt
 {
     protected OidcClient OidcClient { get; }
 
-    public AccessTokenRemoteServiceHttpClientAuthenticator(OidcClient oidcClient)
+    protected ISecureStorage Storage { get; }
+
+    public AccessTokenRemoteServiceHttpClientAuthenticator(OidcClient oidcClient, ISecureStorage storage)
     {
         OidcClient = oidcClient;
+        Storage = storage;
     }
 
     public async Task Authenticate(RemoteServiceHttpClientAuthenticateContext context)
     {
-        var currentAccessToken = await SecureStorage.GetAsync(OidcConsts.AccessTokenKeyName);
+        var currentAccessToken = await Storage.GetAsync(OidcConsts.AccessTokenKeyName);
 
         if (!currentAccessToken.IsNullOrEmpty())
         {
@@ -29,13 +32,13 @@ public class AccessTokenRemoteServiceHttpClientAuthenticator : IRemoteServiceHtt
             var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(currentAccessToken) as JwtSecurityToken;
             if (jwtToken.ValidTo <= DateTime.UtcNow)
             {
-                var refreshToken = await SecureStorage.GetAsync(OidcConsts.RefreshTokenKeyName);
+                var refreshToken = await Storage.GetAsync(OidcConsts.RefreshTokenKeyName);
                 if (!refreshToken.IsNullOrEmpty())
                 {
                     var refreshResult = await OidcClient.RefreshTokenAsync(refreshToken);
 
-                    await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, refreshResult.AccessToken);
-                    await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, refreshResult.RefreshToken);
+                    await Storage.SetAsync(OidcConsts.AccessTokenKeyName, refreshResult.AccessToken);
+                    await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, refreshResult.RefreshToken);
 
                     context.Request.SetBearerToken(refreshResult.AccessToken);
                 }
@@ -43,8 +46,8 @@ public class AccessTokenRemoteServiceHttpClientAuthenticator : IRemoteServiceHtt
                 {
                     var loginResult = await OidcClient.LoginAsync(new LoginRequest());
 
-                    await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
-                    await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
+                    await Storage.SetAsync(OidcConsts.AccessTokenKeyName, loginResult.AccessToken);
+                    await Storage.SetAsync(OidcConsts.RefreshTokenKeyName, loginResult.RefreshToken);
 
                     context.Request.SetBearerToken(loginResult.AccessToken);
                 }

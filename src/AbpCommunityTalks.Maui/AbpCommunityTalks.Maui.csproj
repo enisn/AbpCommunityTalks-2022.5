@@ -48,4 +48,7 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="appsettings.json" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\AbpCommunityTalks.HttpApi.Client\AbpCommunityTalks.HttpApi.Client.csproj" />
+	</ItemGroup>
 </Project>

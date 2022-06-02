@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using Volo.Abp;
+using Volo.Abp.Autofac;
 
 namespace AbpCommunityTalks.Maui;
 
@@ -9,8 +10,9 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
-		builder
+        var builder = MauiApp.CreateBuilder();
+        builder.ConfigureContainer(new AbpAutofacServiceProviderFactory(new Autofac.ContainerBuilder()));
+        builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
