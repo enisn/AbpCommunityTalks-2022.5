@@ -46,7 +46,8 @@ public class IdentityUsersPageViewModel : BindableObject, ITransientDependency
 
     internal async Task DeleteUserAsync(IdentityUserDto user)
     {
-
+        await IdentityUserAppService.DeleteAsync(user.Id);
+        Items.Remove(user);
     }
 
     protected void SetProperty<T>(ref T backField, T value, [CallerMemberName] string propertyName = null)

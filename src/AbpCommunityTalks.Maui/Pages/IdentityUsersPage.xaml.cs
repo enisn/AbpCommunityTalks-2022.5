@@ -7,6 +7,7 @@ namespace AbpCommunityTalks.Maui.Pages;
 public partial class IdentityUsersPage : ContentPage, ITransientDependency
 {
     public IdentityUsersPageViewModel ViewModel { get; set; }
+
     public IdentityUsersPage(IdentityUsersPageViewModel viewModel)
     {
         ViewModel = viewModel;

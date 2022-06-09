@@ -14,15 +14,12 @@ public partial class MainPage : ContentPage, ITransientDependency
     protected ISecureStorage Storage { get; }
     protected IServiceProvider ServiceProvider { get; }
 
-    public MainPage(OidcClient oidcClient, ISecureStorage storage, IServiceProvider serviceProvider/*, IStringLocalizer l*/)
+    public MainPage(OidcClient oidcClient, ISecureStorage storage, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         OidcClient = oidcClient;
         Storage = storage;
         ServiceProvider = serviceProvider;
-
-        //welcome.Text = l["Welcome"];
-        //welcomeLong.Text = l["LongWelcomeMessage"];
     }
 
     async void OnLoginClicked(object sender, EventArgs e)
