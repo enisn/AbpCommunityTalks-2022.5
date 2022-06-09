@@ -22,7 +22,6 @@ public static class MauiProgram
 
 		ConfigureConfiguration(builder);
 
-
 		builder.Services.AddApplication<AbpCommunityTalksMauiModule>(options =>
 		{
 			options.Services.ReplaceConfiguration(builder.Configuration);
